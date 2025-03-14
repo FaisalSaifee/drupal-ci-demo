@@ -30,4 +30,4 @@ jobs:
           ./vendor/bin/phpcs -i  # Show installed standards (optional, for debug)
 
       - name: Run PHPCS on custom modules
-        run: ./vendor/bin/phpcs web/modules/custom
+        run: ./vendor/bin/phpcs --standard=Drupal web/modules/custom
