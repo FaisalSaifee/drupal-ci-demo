@@ -1,0 +1,7 @@
+ci_test.hello:
+  path: '/ci-test'
+  defaults:
+    _controller: '\Drupal\ci_test\Controller\HelloController::hello'
+    _title: 'CI Test Page'
+  requirements:
+    _permission: 'access content'
