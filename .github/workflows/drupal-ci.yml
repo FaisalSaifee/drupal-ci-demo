@@ -19,7 +19,7 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
-          tools: composer
+          tools: composer, phpcs
 
       - name: Install Composer dependencies
         run: composer install --prefer-dist --no-progress
@@ -27,7 +27,7 @@ jobs:
       - name: Register Drupal coding standard
         run: |
           ./vendor/bin/phpcs --config-set installed_paths ./vendor/drupal/coder/coder_sniffer
-          ./vendor/bin/phpcs -i  # Show installed standards (optional, for debug)
+          ./vendor/bin/phpcs -i  # Debug check: shows Drupal & DrupalPractice now installed
 
       - name: Run PHPCS on custom modules
         run: ./vendor/bin/phpcs --standard=Drupal web/modules/custom
