@@ -8,7 +8,7 @@ on:
 
 jobs:
   phpcs:
-    name: Drupal Coding Standards
+    name: Drupal Coding Standards Check
     runs-on: ubuntu-latest
 
     steps:
@@ -19,15 +19,15 @@ jobs:
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.1'
-          tools: composer, phpcs
+          tools: composer
 
-      - name: Install Composer Dependencies
-        run: composer install --prefer-dist --no-progress --no-suggest
+      - name: Install Composer dependencies
+        run: composer install --prefer-dist --no-progress
 
-      - name: Set Drupal Coding Standards
+      - name: Register Drupal coding standard
         run: |
           ./vendor/bin/phpcs --config-set installed_paths ./vendor/drupal/coder/coder_sniffer
-          ./vendor/bin/phpcs --config-set default_standard Drupal
+          ./vendor/bin/phpcs -i  # Show installed standards (optional, for debug)
 
-      - name: Run PHPCS
+      - name: Run PHPCS on custom modules
         run: ./vendor/bin/phpcs web/modules/custom
